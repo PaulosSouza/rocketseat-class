@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
     "prisma:generate": "prisma generate",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy"
@@ -21,6 +22,7 @@
     "@types/bcryptjs": "2.4.6",
     "@types/node": "20.11.0",
     "@vitest/coverage-v8": "1.2.1",
+    "@vitest/ui": "1.2.1",
     "prisma": "5.8.1",
     "tsup": "8.0.1",
     "tsx": "4.7.0",
