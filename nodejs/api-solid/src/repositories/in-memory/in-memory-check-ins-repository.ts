@@ -20,6 +20,10 @@ export class InMemoryCheckInsRepository implements CheckInsRespository {
 		return checkIn;
 	}
 
+	async countByUserId(userId: string): Promise<number> {
+		return this.items.filter((item) => item.userId === userId).length;
+	}
+
 	async findByUserIdOnDate(
 		userId: string,
 		date: Date,
