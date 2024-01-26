@@ -8,7 +8,7 @@ type GetUserMetricsResponse = {
 	checkInsCount: number;
 };
 
-export class GetUserMetrics {
+export class GetUserMetricsUseCase {
 	constructor(private checkInsRepository: CheckInsRespository) {}
 
 	async execute({
