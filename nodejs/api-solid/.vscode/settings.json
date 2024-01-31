@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
+  "files.autoSave": "off",
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit"
