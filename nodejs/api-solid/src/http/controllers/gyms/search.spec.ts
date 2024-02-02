@@ -1,3 +1,4 @@
+import { truncate } from "fs";
 import { app } from "@/app";
 import { createAndAuthenticateUser } from "@/utils/test/create-and-authenticate-user";
 import request from "supertest";
@@ -13,7 +14,7 @@ describe("Search Gyms (e2e)", async () => {
 	});
 
 	it("should be able to search gyms by title", async () => {
-		const { token } = await createAndAuthenticateUser(app);
+		const { token } = await createAndAuthenticateUser(app, true);
 
 		await request(app.server)
 			.post("/gyms")
