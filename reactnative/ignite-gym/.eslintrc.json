@@ -1,0 +1,27 @@
+{
+  "extends": "@rocketseat/eslint-config/react",
+  "plugins": ["eslint-plugin-import-helpers"],
+  "rules": {
+    "camelcase": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always", // new line between groups
+        "groups": [
+            ["/^react$/", "/^react-native$/"],
+            ["/^native-base/", "/^@expo/"],
+            "module",
+            "/^@screens/",
+            ["/^@components/", "/^@hooks/"],
+            ["/^@services/","/^@dtos/"],
+            "/^@storages/",
+            "/^@utils/",
+            "/^@assets/",
+            ["parent", "sibling", "index", "type"]
+        ],
+        "alphabetize": { "order": "desc", "ignoreCase": true }
+      }
+    ]
+  }
+}
