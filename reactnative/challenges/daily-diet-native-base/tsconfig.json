@@ -1,0 +1,43 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "target": "ESNext",
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@navigations": [
+        "./src/navigations"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@storage/*": [
+        "./src/storage/*"
+      ],
+      "@dtos/*": [
+        "./src/dtos/*"
+      ],
+      "@themes/*": [
+        "./src/themes/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
+    }
+  }
+}
