@@ -18,12 +18,15 @@ jobs:
           POSTGRESQL_DATABASE: apisolid
 
     steps:
-      - uses: actions/checkout@v4--frozen-lockfile
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
       
       - run: pnpm install --frozen-lockfile
 
