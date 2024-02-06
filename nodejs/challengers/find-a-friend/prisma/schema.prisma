@@ -9,3 +9,49 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum SIZES {
+  SMALL
+  STANDARD
+  BIG
+}
+
+enum LEVELS {
+  LOW
+  MODERATE
+  NORMAL
+  HIGH
+  PEAK
+}
+
+model Institution {
+  id            String  @id @default(uuid())
+  ownerName     String  @map("owner_name")
+  email         String  @unique
+  latitude      Decimal
+  longitude     Decimal
+  zipCode       String  @map("zip_code") @db.VarChar(8)
+  phone_number  String  @db.VarChar(12)
+  password_hash String
+
+  pets Pet[]
+
+  @@map("institutions")
+}
+
+model Pet {
+  id                    String   @id @default(uuid())
+  name                  String
+  about                 String   @db.Text
+  size                  SIZES
+  environment           SIZES
+  energy                LEVELS
+  autonomy              LEVELS
+  images                String[]
+  adotions_requirements String[]
+
+  institution   Institution @relation(fields: [institutionId], references: [id])
+  institutionId String      @map("institution_id")
+
+  @@map("pets")
+}
