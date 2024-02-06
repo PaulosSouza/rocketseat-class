@@ -25,13 +25,14 @@ enum LEVELS {
 }
 
 model Institution {
-  id            String  @id @default(uuid())
-  ownerName     String  @map("owner_name")
-  email         String  @unique
-  latitude      Decimal
-  longitude     Decimal
-  zipCode       String  @map("zip_code") @db.VarChar(8)
-  phone_number  String  @db.VarChar(12)
+  id            String @id @default(uuid())
+  ownerName     String @map("owner_name")
+  email         String @unique
+  city          String
+  street        String
+  state         String @db.Char(2)
+  zipCode       String @map("zip_code") @db.VarChar(8)
+  phone_number  String @db.VarChar(12)
   password_hash String
 
   pets Pet[]
