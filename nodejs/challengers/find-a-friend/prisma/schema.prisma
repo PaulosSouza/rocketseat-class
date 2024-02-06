@@ -29,7 +29,9 @@ model Institution {
   ownerName     String @map("owner_name")
   email         String @unique
   city          String
-  street        String
+  address       String
+  addressNumber String @map("address_number")
+  neighborhood  String
   state         String @db.Char(2)
   zipCode       String @map("zip_code") @db.VarChar(8)
   phone_number  String @db.VarChar(12)
