@@ -34,8 +34,8 @@ model Institution {
   neighborhood  String
   state         String @db.Char(2)
   zipCode       String @map("zip_code") @db.VarChar(8)
-  phone_number  String @db.VarChar(12)
-  password_hash String
+  phoneNumber   String @map("phone_number") @db.VarChar(12)
+  passwordHash  String @map("password_hash")
 
   pets Pet[]
 
