@@ -1,6 +1,7 @@
 import { Institution } from "@/models/institution-model";
 import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { hash } from "bcryptjs";
+import { InstitutionEmailAlreadyExists } from "./errors/institution-email-already-exists-error";
 
 interface CreateInstitutionUseCaseRequest {
 	ownerName: string;
@@ -25,6 +26,13 @@ export class CreateInstitutionUseCase {
 	async execute(
 		data: CreateInstitutionUseCaseRequest,
 	): Promise<CreateInstitutionUseCaseResponse> {
+		const institutionAlreadyExists =
+			await this.institutionsRepository.getByEmail(data.email);
+
+		if (institutionAlreadyExists) {
+			throw new InstitutionEmailAlreadyExists();
+		}
+
 		const passwordHash = await hash(data.password, 6);
 
 		const createInstitutionDTO = {
