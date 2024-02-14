@@ -17,7 +17,7 @@ export class InstitutionsRepositoryInMemory implements InstitutionsRepository {
 		return institution;
 	}
 
-	async getByEmail(email: string): Promise<Institution | null> {
+	async findByEmail(email: string): Promise<Institution | null> {
 		const institution = this.items.find(
 			(institution) => institution.email === email,
 		);

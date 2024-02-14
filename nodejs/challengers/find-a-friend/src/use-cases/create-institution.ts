@@ -27,7 +27,7 @@ export class CreateInstitutionUseCase {
 		data: CreateInstitutionUseCaseRequest,
 	): Promise<CreateInstitutionUseCaseResponse> {
 		const institutionAlreadyExists =
-			await this.institutionsRepository.getByEmail(data.email);
+			await this.institutionsRepository.findByEmail(data.email);
 
 		if (institutionAlreadyExists) {
 			throw new InstitutionEmailAlreadyExists();

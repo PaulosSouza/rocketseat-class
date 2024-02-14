@@ -4,5 +4,5 @@ import { CreateInstitutionDTO } from "./dtos/create-institution-dto";
 export interface InstitutionsRepository {
 	create(data: CreateInstitutionDTO): Promise<Institution>;
 
-	getByEmail(email: string): Promise<Institution | null>;
+	findByEmail(email: string): Promise<Institution | null>;
 }
