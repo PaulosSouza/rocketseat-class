@@ -1,4 +1,4 @@
-import { Institution } from "@/models/institution-model";
+import { Institution } from "@/models/institution";
 import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { compare } from "bcryptjs";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";

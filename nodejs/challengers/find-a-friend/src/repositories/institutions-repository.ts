@@ -1,4 +1,4 @@
-import { Institution } from "@/models/institution-model";
+import { Institution } from "@/models/institution";
 import { CreateInstitutionDTO } from "./dtos/create-institution-dto";
 
 export interface InstitutionsRepository {

@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { Institution } from "@/models/institution-model";
+import { Institution } from "@/models/institution";
 import { CreateInstitutionDTO } from "@/repositories/dtos/create-institution-dto";
 import { InstitutionsRepository } from "@/repositories/institutions-repository";
 

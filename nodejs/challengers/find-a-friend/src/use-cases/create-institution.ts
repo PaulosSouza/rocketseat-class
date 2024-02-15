@@ -1,4 +1,4 @@
-import { Institution } from "@/models/institution-model";
+import { Institution } from "@/models/institution";
 import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { hash } from "bcryptjs";
 import { InstitutionEmailAlreadyExists } from "./errors/institution-email-already-exists-error";
