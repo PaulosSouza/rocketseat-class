@@ -39,7 +39,7 @@ describe("Authenticate Institution Use Case", () => {
 		expect(createdInstitution.id).toEqual(institution.id);
 	});
 
-	it.skip("should not be able to authenticate an institution with wrong email", async () => {
+	it("should not be able to authenticate an institution with wrong email", async () => {
 		await expect(() =>
 			sut.execute({
 				email: faker.internet.email(),
@@ -48,7 +48,7 @@ describe("Authenticate Institution Use Case", () => {
 		).rejects.toBeInstanceOf(InvalidCredentialsError);
 	});
 
-	it.skip("should not be able to authenticate an institution with wrong password", async () => {
+	it("should not be able to authenticate an institution with wrong password", async () => {
 		const password = faker.internet.password();
 
 		const createdInstitution = await institutionsRepository.create({
