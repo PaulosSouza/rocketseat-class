@@ -5,4 +5,5 @@ export interface InstitutionsRepository {
 	create(data: CreateInstitutionDTO): Promise<Institution>;
 
 	findByEmail(email: string): Promise<Institution | null>;
+	findById(id: string): Promise<Institution | null>;
 }

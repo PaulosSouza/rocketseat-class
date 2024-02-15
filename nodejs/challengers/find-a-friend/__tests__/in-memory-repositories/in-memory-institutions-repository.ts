@@ -24,4 +24,10 @@ export class InstitutionsRepositoryInMemory implements InstitutionsRepository {
 
 		return institution ?? null;
 	}
+
+	async findById(id: string): Promise<Institution | null> {
+		const institution = this.items.find((institution) => institution.id === id);
+
+		return institution ?? null;
+	}
 }

@@ -30,8 +30,6 @@ export class AuthenticateInstitutionUseCase {
 			institution.passwordHash,
 		);
 
-		console.log(institution.passwordHash, password);
-
 		if (!doesPasswordMatches) {
 			throw new InvalidCredentialsError();
 		}
