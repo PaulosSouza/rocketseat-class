@@ -26,6 +26,7 @@
     "@fastify/jwt": "8.0.0",
     "@prisma/client": "5.9.1",
     "bcryptjs": "2.4.3",
+    "change-case": "^5.4.3",
     "dotenv": "16.4.1",
     "fastify": "4.26.0",
     "zod": "3.22.4",

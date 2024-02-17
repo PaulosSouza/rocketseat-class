@@ -3,7 +3,7 @@ import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { hash } from "bcryptjs";
 import { InstitutionEmailAlreadyExists } from "./errors/institution-email-already-exists-error";
 
-interface RegisterInstitutionUseCaseRequest {
+export interface RegisterInstitutionUseCaseRequest {
 	ownerName: string;
 	password: string;
 	email: string;
@@ -37,6 +37,7 @@ export class RegisterInstitutionUseCase {
 
 		const createInstitutionDTO = {
 			...data,
+			password: undefined,
 			passwordHash,
 		};
 

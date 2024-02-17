@@ -20,6 +20,9 @@ dependencies:
   bcryptjs:
     specifier: 2.4.3
     version: 2.4.3
+  change-case:
+    specifier: ^5.4.3
+    version: 5.4.3
   dotenv:
     specifier: 16.4.1
     version: 16.4.1
@@ -1346,6 +1349,10 @@ packages:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
+
+  /change-case@5.4.3:
+    resolution: {integrity: sha512-4cdyvorTy/lViZlVzw2O8/hHCLUuHqp4KpSSP3DlauhFCf3LdnfF+p5s0EAhjKsU7bqrMzu7iQArYfoPiHO2nw==}
+    dev: false
 
   /check-error@1.0.3:
     resolution: {integrity: sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==}
