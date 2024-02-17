@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker/locale/pt_BR";
 import request from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
-describe("Register Institution (e2e)", async () => {
+describe("Authenticate Institution (e2e)", async () => {
 	beforeAll(async () => {
 		await app.ready();
 	});
@@ -12,13 +12,16 @@ describe("Register Institution (e2e)", async () => {
 		await app.close();
 	});
 
-	it("should be able to register an institution", async () => {
-		const response = await request(app.server)
+	it("should be able to authenticate an institution", async () => {
+		const password = faker.internet.password({ length: 8 });
+		const email = faker.internet.email();
+
+		await request(app.server)
 			.post("/institutions")
 			.send({
 				owner_name: faker.person.fullName(),
-				password: faker.internet.password({ length: 8 }),
-				email: faker.internet.email(),
+				password,
+				email,
 				city: faker.location.city(),
 				address: faker.location.street(),
 				address_number: faker.location.buildingNumber(),
@@ -28,6 +31,14 @@ describe("Register Institution (e2e)", async () => {
 				phone_number: faker.phone.number().replace(/\W+/gi, ""),
 			});
 
-		expect(response.statusCode).toEqual(201);
+		const response = await request(app.server).post("/sessions").send({
+			email,
+			password,
+		});
+
+		expect(response.statusCode).toBe(200);
+		expect(response.body).toEqual({
+			token: expect.any(String),
+		});
 	});
 });
