@@ -3,7 +3,7 @@ import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { hash } from "bcryptjs";
 import { InstitutionEmailAlreadyExists } from "./errors/institution-email-already-exists-error";
 
-interface CreateInstitutionUseCaseRequest {
+interface RegisterInstitutionUseCaseRequest {
 	ownerName: string;
 	password: string;
 	email: string;
@@ -16,16 +16,16 @@ interface CreateInstitutionUseCaseRequest {
 	phoneNumber: string;
 }
 
-interface CreateInstitutionUseCaseResponse {
+interface RegisterInstitutionUseCaseResponse {
 	institution: Institution;
 }
 
-export class CreateInstitutionUseCase {
+export class RegisterInstitutionUseCase {
 	constructor(private institutionsRepository: InstitutionsRepository) {}
 
 	async execute(
-		data: CreateInstitutionUseCaseRequest,
-	): Promise<CreateInstitutionUseCaseResponse> {
+		data: RegisterInstitutionUseCaseRequest,
+	): Promise<RegisterInstitutionUseCaseResponse> {
 		const institutionAlreadyExists =
 			await this.institutionsRepository.findByEmail(data.email);
 

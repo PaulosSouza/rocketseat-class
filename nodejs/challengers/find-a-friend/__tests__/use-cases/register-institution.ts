@@ -1,16 +1,16 @@
-import { CreateInstitutionUseCase } from "@/use-cases/create-institution";
 import { InstitutionEmailAlreadyExists } from "@/use-cases/errors/institution-email-already-exists-error";
+import { RegisterInstitutionUseCase } from "@/use-cases/register-institution";
 import { faker } from "@faker-js/faker";
 import { beforeEach, describe, expect, it } from "vitest";
 import { InstitutionsRepositoryInMemory } from "../in-memory-repositories/in-memory-institutions-repository";
 
 let institutionsRepository: InstitutionsRepositoryInMemory;
-let sut: CreateInstitutionUseCase;
+let sut: RegisterInstitutionUseCase;
 
 describe("Create Institution Use Case", () => {
 	beforeEach(() => {
 		institutionsRepository = new InstitutionsRepositoryInMemory();
-		sut = new CreateInstitutionUseCase(institutionsRepository);
+		sut = new RegisterInstitutionUseCase(institutionsRepository);
 	});
 
 	it("should be able to create an institution", async () => {
