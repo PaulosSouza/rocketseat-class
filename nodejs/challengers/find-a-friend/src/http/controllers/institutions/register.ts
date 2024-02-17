@@ -15,8 +15,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 		address_number: z.string(),
 		neighborhood: z.string(),
 		state: z.string().max(2),
-		zip_code: z.string().max(12),
-		phone_number: z.string().max(11),
+		zip_code: z.string().max(8),
+		phone_number: z.string().max(12),
 	});
 
 	const registerInstitutionDataValidated = registerInstitutionBodySchema.parse(
@@ -31,7 +31,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 		const useCase = makeRegisterInstitutionUseCaseFactory();
 		await useCase.execute(registerInsitutionDataParsed);
 
-		return reply.code(200).send();
+		return reply.code(201).send();
 	} catch (error) {
 		if (error instanceof InstitutionEmailAlreadyExists) {
 			return reply.status(409).send({ message: error.message });
