@@ -3,6 +3,7 @@ import { Pet } from "@/models/pet";
 import { CreatePetDTO } from "@/repositories/dtos/create-pet-dto";
 import { SearchManyDTO } from "@/repositories/dtos/search-many-dto";
 import { PetsRepository } from "@/repositories/pets-repository";
+import isAnyObjectValueTruthy from "@/utils/is-any-object-value-truthy";
 import { InstitutionsRepositoryInMemory } from "./in-memory-institutions-repository";
 
 export class PetsRepositoryInMemory implements PetsRepository {
@@ -22,7 +23,7 @@ export class PetsRepositoryInMemory implements PetsRepository {
 	}
 
 	async searchMany(params: SearchManyDTO): Promise<Pet[]> {
-		const { city, state } = params;
+		const { city, state, ...filters } = params;
 
 		const institutionsByCityAndState = this.institutionRepository.items.filter(
 			(institution) => institution.city === city && institution.state === state,
@@ -36,9 +37,31 @@ export class PetsRepositoryInMemory implements PetsRepository {
 			(institution) => institution.id,
 		);
 
-		const pets = this.items.filter((pet) =>
-			institutionsIds.includes(pet.institution_id),
-		);
+		const haveAnyFilterValueValid = isAnyObjectValueTruthy(filters);
+
+		if (!haveAnyFilterValueValid) {
+			const petsFilteredByCityAndState = this.items.filter((pet) =>
+				institutionsIds.includes(pet.institution_id),
+			);
+
+			return petsFilteredByCityAndState;
+		}
+
+		const pets: Pet[] = [];
+
+		for (const pet of this.items) {
+			const petEntriesObject = Object.entries(pet);
+
+			for (const [petKeyObject, petValueObject] of petEntriesObject) {
+				const filterValue = filters[petKeyObject as keyof typeof filters];
+
+				if (!filterValue || petValueObject !== filterValue) {
+					continue;
+				}
+
+				pets.push(pet);
+			}
+		}
 
 		return pets;
 	}

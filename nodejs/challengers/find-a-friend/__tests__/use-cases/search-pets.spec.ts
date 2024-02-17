@@ -71,4 +71,108 @@ describe("Search Pets Use Case", () => {
 			expect.objectContaining({ name: petName }),
 		]);
 	});
+
+	it("should be able to search pets by its size", async () => {
+		const city = faker.location.city();
+		const state = faker.location.state();
+
+		const petName = faker.animal.dog();
+		const petSize = SIZES.BIG;
+
+		const institution = await institutionsRepository.create({
+			ownerName: faker.person.fullName(),
+			email: faker.internet.email(),
+			address: faker.location.street(),
+			addressNumber: faker.location.buildingNumber(),
+			city,
+			state,
+			neighborhood: faker.location.streetAddress(),
+			phoneNumber: faker.phone.number(),
+			zipCode: faker.location.zipCode(),
+			passwordHash: faker.internet.password(),
+		});
+
+		for (let index = 1; index <= 3; index++) {
+			const size = index !== 3 ? petSize : SIZES.SMALL;
+
+			await petsRepository.create({
+				name: petName,
+				about: "A beautiful dog",
+				autonomy: faker.helpers.enumValue(LEVELS),
+				energy: faker.helpers.enumValue(LEVELS),
+				size,
+				environment: faker.helpers.enumValue(SIZES),
+				adoption_requirements: faker.helpers.uniqueArray(
+					faker.word.adjective,
+					4,
+				),
+				images: faker.helpers.uniqueArray(faker.internet.url, 4),
+				institution_id: institution.id,
+			});
+		}
+
+		const { pets } = await sut.execute({
+			city,
+			state,
+			size: petSize,
+		});
+
+		expect(pets).toHaveLength(2);
+		expect(pets).toEqual([
+			expect.objectContaining({ size: petSize }),
+			expect.objectContaining({ size: petSize }),
+		]);
+	});
+
+	it("should be able to search pets by its energy", async () => {
+		const city = faker.location.city();
+		const state = faker.location.state();
+
+		const petName = faker.animal.dog();
+		const petEnergy = LEVELS.HIGH;
+
+		const institution = await institutionsRepository.create({
+			ownerName: faker.person.fullName(),
+			email: faker.internet.email(),
+			address: faker.location.street(),
+			addressNumber: faker.location.buildingNumber(),
+			city,
+			state,
+			neighborhood: faker.location.streetAddress(),
+			phoneNumber: faker.phone.number(),
+			zipCode: faker.location.zipCode(),
+			passwordHash: faker.internet.password(),
+		});
+
+		for (let index = 1; index <= 3; index++) {
+			const energy = index !== 3 ? petEnergy : LEVELS.MODERATE;
+
+			await petsRepository.create({
+				name: petName,
+				about: "A beautiful dog",
+				autonomy: faker.helpers.enumValue(LEVELS),
+				energy,
+				size: faker.helpers.enumValue(SIZES),
+				environment: faker.helpers.enumValue(SIZES),
+				adoption_requirements: faker.helpers.uniqueArray(
+					faker.word.adjective,
+					4,
+				),
+				images: faker.helpers.uniqueArray(faker.internet.url, 4),
+				institution_id: institution.id,
+			});
+		}
+
+		const { pets } = await sut.execute({
+			city,
+			state,
+			energy: petEnergy,
+		});
+
+		expect(pets).toHaveLength(2);
+		expect(pets).toEqual([
+			expect.objectContaining({ energy: petEnergy }),
+			expect.objectContaining({ energy: petEnergy }),
+		]);
+	});
 });
