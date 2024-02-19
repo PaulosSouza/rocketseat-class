@@ -14,7 +14,7 @@ let sut: GetPetUseCase;
 describe("Get Pet Detail Use Case", () => {
 	beforeEach(() => {
 		institutionsRepository = new InstitutionsRepositoryInMemory();
-		petsRepository = new PetsRepositoryInMemory();
+		petsRepository = new PetsRepositoryInMemory(institutionsRepository);
 		sut = new GetPetUseCase(petsRepository);
 	});
 
@@ -39,9 +39,9 @@ describe("Get Pet Detail Use Case", () => {
 			energy: faker.helpers.enumValue(LEVELS),
 			size: faker.helpers.enumValue(SIZES),
 			environment: faker.helpers.enumValue(SIZES),
-			adoption_requirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
+			adoptionsRequirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
 			images: faker.helpers.uniqueArray(faker.internet.url, 4),
-			institution_id: institution.id,
+			institutionId: institution.id,
 		});
 
 		const { pet } = await sut.execute({

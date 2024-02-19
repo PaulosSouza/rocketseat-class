@@ -6,9 +6,10 @@ export class Pet {
 	name!: string;
 	about!: string;
 	size!: SIZES;
+	environment!: SIZES;
 	energy!: LEVELS;
 	autonomy!: LEVELS;
 	images!: string[];
-	adoption_requirements!: string[];
-	institution_id!: string;
+	adoptionsRequirements!: string[];
+	institutionId!: string;
 }

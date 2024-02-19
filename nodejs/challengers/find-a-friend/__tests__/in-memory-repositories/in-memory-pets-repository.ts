@@ -41,7 +41,7 @@ export class PetsRepositoryInMemory implements PetsRepository {
 
 		if (!haveAnyFilterValueValid) {
 			const petsFilteredByCityAndState = this.items.filter((pet) =>
-				institutionsIds.includes(pet.institution_id),
+				institutionsIds.includes(pet.institutionId),
 			);
 
 			return petsFilteredByCityAndState;

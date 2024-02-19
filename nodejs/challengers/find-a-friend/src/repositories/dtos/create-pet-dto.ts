@@ -9,6 +9,6 @@ export interface CreatePetDTO {
 	energy: LEVELS;
 	autonomy: LEVELS;
 	images: string[];
-	adoption_requirements: string[];
-	institution_id: string;
+	adoptionsRequirements: string[];
+	institutionId: string;
 }

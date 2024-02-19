@@ -60,7 +60,6 @@ export class PrismaCheckInsRepository implements CheckInsRespository {
 				},
 			},
 		});
-    
 
 		return checkIn;
 	}

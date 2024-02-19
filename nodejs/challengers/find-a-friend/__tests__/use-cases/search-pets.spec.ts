@@ -43,9 +43,9 @@ describe("Search Pets Use Case", () => {
 			energy: faker.helpers.enumValue(LEVELS),
 			size: faker.helpers.enumValue(SIZES),
 			environment: faker.helpers.enumValue(SIZES),
-			adoption_requirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
+			adoptionsRequirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
 			images: faker.helpers.uniqueArray(faker.internet.url, 4),
-			institution_id: institution.id,
+			institutionId: institution.id,
 		});
 
 		await petsRepository.create({
@@ -55,9 +55,9 @@ describe("Search Pets Use Case", () => {
 			energy: faker.helpers.enumValue(LEVELS),
 			size: faker.helpers.enumValue(SIZES),
 			environment: faker.helpers.enumValue(SIZES),
-			adoption_requirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
+			adoptionsRequirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
 			images: faker.helpers.uniqueArray(faker.internet.url, 4),
-			institution_id: institution.id,
+			institutionId: institution.id,
 		});
 
 		const { pets } = await sut.execute({
@@ -102,12 +102,12 @@ describe("Search Pets Use Case", () => {
 				energy: faker.helpers.enumValue(LEVELS),
 				size,
 				environment: faker.helpers.enumValue(SIZES),
-				adoption_requirements: faker.helpers.uniqueArray(
+				adoptionsRequirements: faker.helpers.uniqueArray(
 					faker.word.adjective,
 					4,
 				),
 				images: faker.helpers.uniqueArray(faker.internet.url, 4),
-				institution_id: institution.id,
+				institutionId: institution.id,
 			});
 		}
 
@@ -154,12 +154,12 @@ describe("Search Pets Use Case", () => {
 				energy,
 				size: faker.helpers.enumValue(SIZES),
 				environment: faker.helpers.enumValue(SIZES),
-				adoption_requirements: faker.helpers.uniqueArray(
+				adoptionsRequirements: faker.helpers.uniqueArray(
 					faker.word.adjective,
 					4,
 				),
 				images: faker.helpers.uniqueArray(faker.internet.url, 4),
-				institution_id: institution.id,
+				institutionId: institution.id,
 			});
 		}
 

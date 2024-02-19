@@ -14,7 +14,7 @@ let sut: CreatePetUseCase;
 describe("Create Institution Use Case", () => {
 	beforeEach(() => {
 		institutionsRepository = new InstitutionsRepositoryInMemory();
-		petsRepository = new PetsRepositoryInMemory();
+		petsRepository = new PetsRepositoryInMemory(institutionsRepository);
 		sut = new CreatePetUseCase(petsRepository, institutionsRepository);
 	});
 
@@ -39,9 +39,9 @@ describe("Create Institution Use Case", () => {
 			energy: faker.helpers.enumValue(LEVELS),
 			size: faker.helpers.enumValue(SIZES),
 			environment: faker.helpers.enumValue(SIZES),
-			adoption_requirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
+			adoptionsRequirements: faker.helpers.uniqueArray(faker.word.adjective, 4),
 			images: faker.helpers.uniqueArray(faker.internet.url, 4),
-			institution_id: institution.id,
+			institutionId: institution.id,
 		});
 
 		expect(pet.id).toEqual(expect.any(String));
@@ -56,12 +56,12 @@ describe("Create Institution Use Case", () => {
 				energy: faker.helpers.enumValue(LEVELS),
 				size: faker.helpers.enumValue(SIZES),
 				environment: faker.helpers.enumValue(SIZES),
-				adoption_requirements: faker.helpers.uniqueArray(
+				adoptionsRequirements: faker.helpers.uniqueArray(
 					faker.word.adjective,
 					4,
 				),
 				images: faker.helpers.uniqueArray(faker.internet.url, 4),
-				institution_id: "invalid-institution",
+				institutionId: "invalid-institution",
 			}),
 		).rejects.toBeInstanceOf(ResourceNotFoundError);
 	});

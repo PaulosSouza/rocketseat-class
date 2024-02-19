@@ -5,7 +5,7 @@ import { InstitutionsRepository } from "@/repositories/institutions-repository";
 import { PetsRepository } from "@/repositories/pets-repository";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 
-interface CreatePetUseCaseRequest {
+export interface CreatePetUseCaseRequest {
 	name: string;
 	about: string;
 	size: SIZES;
@@ -13,8 +13,8 @@ interface CreatePetUseCaseRequest {
 	energy: LEVELS;
 	autonomy: LEVELS;
 	images: string[];
-	adoption_requirements: string[];
-	institution_id: string;
+	adoptionsRequirements: string[];
+	institutionId: string;
 }
 
 interface CreatePetUseCaseResponse {
@@ -31,7 +31,7 @@ export class CreatePetUseCase {
 		data: CreatePetUseCaseRequest,
 	): Promise<CreatePetUseCaseResponse> {
 		const institutionAlredyExists = await this.institutionRepository.findById(
-			data.institution_id,
+			data.institutionId,
 		);
 
 		if (!institutionAlredyExists) {

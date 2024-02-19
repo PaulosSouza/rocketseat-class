@@ -51,7 +51,7 @@ model Pet {
   energy                LEVELS
   autonomy              LEVELS
   images                String[]
-  adotions_requirements String[]
+  adoptionsRequirements String[] @map("adoptions_requirements")
 
   institution   Institution @relation(fields: [institutionId], references: [id])
   institutionId String      @map("institution_id")
