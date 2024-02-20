@@ -41,7 +41,7 @@ describe("Get Pet Detail (e2e)", async () => {
 			.set("Authorization", `Bearer ${token}`);
 
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual(
+		expect(response.body.pet).toEqual(
 			expect.objectContaining({
 				name: pet.name,
 			}),
