@@ -14,7 +14,7 @@ export async function getById(request: FastifyRequest, reply: FastifyReply) {
 		const useCase = makeGetPetByIdUseCaseFactory();
 		const { pet } = await useCase.execute({ petId });
 
-		return reply.code(200).send(pet);
+		return reply.code(200).send({ pet });
 	} catch (error) {
 		if (error instanceof ResourceNotFoundError) {
 			return reply.status(404).send({ message: error.message });
