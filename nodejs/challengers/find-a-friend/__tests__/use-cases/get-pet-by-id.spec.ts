@@ -1,7 +1,7 @@
 import { LEVELS } from "@/enums/levels";
 import { SIZES } from "@/enums/sizes";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error";
-import { GetPetUseCase } from "@/use-cases/get-pet-details";
+import { GetPetByIdUseCase } from "@/use-cases/get-pet-by-id";
 import { faker } from "@faker-js/faker";
 import { beforeEach, describe, expect, it } from "vitest";
 import { InstitutionsRepositoryInMemory } from "../in-memory-repositories/in-memory-institutions-repository";
@@ -9,16 +9,16 @@ import { PetsRepositoryInMemory } from "../in-memory-repositories/in-memory-pets
 
 let institutionsRepository: InstitutionsRepositoryInMemory;
 let petsRepository: PetsRepositoryInMemory;
-let sut: GetPetUseCase;
+let sut: GetPetByIdUseCase;
 
-describe("Get Pet Detail Use Case", () => {
+describe("Get Pet By Id Use Case", () => {
 	beforeEach(() => {
 		institutionsRepository = new InstitutionsRepositoryInMemory();
 		petsRepository = new PetsRepositoryInMemory(institutionsRepository);
-		sut = new GetPetUseCase(petsRepository);
+		sut = new GetPetByIdUseCase(petsRepository);
 	});
 
-	it("should be able to get pet's details", async () => {
+	it("should be able to get pet by id", async () => {
 		const institution = await institutionsRepository.create({
 			ownerName: faker.person.fullName(),
 			email: faker.internet.email(),
@@ -51,7 +51,7 @@ describe("Get Pet Detail Use Case", () => {
 		expect(pet.id).toEqual(createdPet.id);
 	});
 
-	it("should not be able to get pet's details with an invalid id", async () => {
+	it("should not be able to get pet with an invalid id", async () => {
 		expect(() =>
 			sut.execute({
 				petId: "fake-pet-id",

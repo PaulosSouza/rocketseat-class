@@ -2,20 +2,20 @@ import { Pet } from "@/models/pet";
 import { PetsRepository } from "@/repositories/pets-repository";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 
-interface GetPetUseCaseRequest {
+interface GetPetByIdUseCaseRequest {
 	petId: string;
 }
 
-interface GetPetUseCaseResponse {
+interface GetPetByIdUseCaseResponse {
 	pet: Pet;
 }
 
-export class GetPetUseCase {
+export class GetPetByIdUseCase {
 	constructor(private petsRepository: PetsRepository) {}
 
 	async execute({
 		petId,
-	}: GetPetUseCaseRequest): Promise<GetPetUseCaseResponse> {
+	}: GetPetByIdUseCaseRequest): Promise<GetPetByIdUseCaseResponse> {
 		const pet = await this.petsRepository.findById(petId);
 
 		if (!pet) {
