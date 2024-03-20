@@ -10,6 +10,6 @@ export class Entity<Props> {
   }
 
   get id() {
-    return this._id.toValue();
+    return this._id;
   }
 }
