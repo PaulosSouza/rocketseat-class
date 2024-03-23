@@ -1,8 +1,7 @@
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import { Question } from "../../enterprise/entities/question";
 import { QuestionsRepository } from "../repositories/questions-repository";
 import { QuestionComment } from "../../enterprise/entities/question-comment";
-import { QuestionsCommentRepository } from "../repositories/questions-comments-repository";
+import { QuestionsCommentRepository } from "../repositories/question-comments-repository";
 
 interface CommentOnQuestionUseCaseRequest {
   authorId: string;
