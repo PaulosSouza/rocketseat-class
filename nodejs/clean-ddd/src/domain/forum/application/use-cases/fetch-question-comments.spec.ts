@@ -6,7 +6,7 @@ import { makeQuestionComment } from "test/factories/make-question-comment";
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository;
 let sut: FetchQuestionCommentsUseCase;
 
-describe("Fetch Recent Question Comments", () => {
+describe("Fetch Question Comments", () => {
   beforeEach(() => {
     inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository();
     sut = new FetchQuestionCommentsUseCase(inMemoryQuestionCommentsRepository);
