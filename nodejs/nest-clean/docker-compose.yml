@@ -2,6 +2,7 @@ services:
   postgres:
     container_name: nest-clean-pg
     image: postgres
+    restart: always
     ports:
       - 5433:5433
     environment:
