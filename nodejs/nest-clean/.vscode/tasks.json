@@ -5,7 +5,7 @@
 			"type": "npm",
 			"script": "start:dev",
 			"problemMatcher": [],
-			"label": "Run NestJS Server"
+			"label": "NestJS Server"
 		},
     {
 			"type": "npm",
