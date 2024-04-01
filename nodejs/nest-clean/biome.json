@@ -7,12 +7,20 @@
     "indentStyle": "space",
     "lineWidth": 100
   },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "complexity": {
         "noUselessConstructor": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
       },
       "style": {
         "useImportType": "off"
