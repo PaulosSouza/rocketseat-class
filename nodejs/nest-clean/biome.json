@@ -11,6 +11,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "complexity": {
+        "noUselessConstructor": "off"
+      },
       "style": {
         "useImportType": "off"
       }
