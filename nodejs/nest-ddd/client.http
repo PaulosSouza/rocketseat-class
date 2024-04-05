@@ -30,8 +30,8 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "title": "Minha terceira pergunta",
-  "content": "Minha terceira resposta"
+  "title": "Minha segunda pergunta",
+  "content": "Minha segunda resposta"
 }
 
 
