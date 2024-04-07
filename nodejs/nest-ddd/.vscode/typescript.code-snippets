@@ -1,0 +1,40 @@
+{
+  "use-case": {
+    "prefix": ";us",
+    "body": [
+      "import { Either } from '@/core/either';",
+      "import { Injectable } from '@nestjs/common';",
+      "",
+      "interface $1UseCaseRequest {",
+      "}",
+      "",
+      "type $1UseCaseError = null",
+      "",
+      "type $1UseCaseResponse = Either<$1UseCaseError, {}>;",
+      "",
+      "@Injectable()",
+      "export class $1UseCase {",
+      "\tconstructor() {}",
+      "",
+      "\tasync execute({}: $1UseCaseRequest): Promise<$1UseCaseResponse> {",
+      "\t\t",
+      "\t}",
+      "}"
+    ],
+    "description": "Use Case snippet"
+  },
+
+  "use-case-error-class": {
+    "prefix": ";usec",
+    "body": [
+      "import { UseCaseError } from '@/core/errors/use-case-error';",
+      "",
+      "export class $1Error extends Error implements UseCaseError {",
+      "\tconstructor() {",
+      "\t\tsuper('$2');",
+      "\t}",
+      "}"
+    ],
+    "description": "Use Case Error snippet"
+  }
+}
