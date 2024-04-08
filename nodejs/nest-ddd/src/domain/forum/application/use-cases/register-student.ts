@@ -5,18 +5,18 @@ import { HashGenerator } from "../cryptography/hash-generator";
 import { StudentsRepository } from "../repositories/students-repository";
 import { StudentAlreadyExistsError } from "./errors/student-already-exists-error";
 
-interface RegisterUserUseCaseRequest {
+interface RegisterStudentUseCaseRequest {
   name: string;
   email: string;
   password: string;
 }
 
-type RegisterUserUseCaseErrors = StudentAlreadyExistsError;
+type RegisterStudentUseCaseErrors = StudentAlreadyExistsError;
 
-type RegisterUserUseCaseResponse = Either<RegisterUserUseCaseErrors, { student: Student }>;
+type RegisterStudentUseCaseResponse = Either<RegisterStudentUseCaseErrors, { student: Student }>;
 
 @Injectable()
-export class RegisterUserUseCase {
+export class RegisterStudentUseCase {
   constructor(
     private readonly studentsRepository: StudentsRepository,
     private readonly hashGenerator: HashGenerator,
@@ -26,7 +26,7 @@ export class RegisterUserUseCase {
     name,
     email,
     password,
-  }: RegisterUserUseCaseRequest): Promise<RegisterUserUseCaseResponse> {
+  }: RegisterStudentUseCaseRequest): Promise<RegisterStudentUseCaseResponse> {
     const studentWithSameEmail = await this.studentsRepository.findByEmail(email);
 
     if (studentWithSameEmail) {
