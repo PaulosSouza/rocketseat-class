@@ -2,7 +2,7 @@ import { CreateQuestionUseCase } from "@/domain/forum/application/use-cases/crea
 import { CurrentUser } from "@/infra/auth/current-user.decorator";
 import { JwtAuthGuard } from "@/infra/auth/jwt-auth.guard";
 import { UserPayload } from "@/infra/auth/jwt.strategy";
-import { Body, Controller, HttpCode, Post, UseGuards } from "@nestjs/common";
+import { BadRequestException, Body, Controller, HttpCode, Post, UseGuards } from "@nestjs/common";
 import { z } from "zod";
 import { ZodValidationPipe } from "../pipes/zod-validation.pipe";
 
@@ -27,11 +27,15 @@ export class CreateQuestionController {
     const { sub: userId } = user;
     const { title, content } = body;
 
-    await this.createQuestion.execute({
+    const result = await this.createQuestion.execute({
       title,
       content,
       authorId: userId,
       attachmentsIds: [],
     });
+
+    if (result.isLeft()) {
+      throw new BadRequestException();
+    }
   }
 }
