@@ -23,7 +23,6 @@
     ],
     "description": "Use Case snippet"
   },
-
   "use-case-error-class": {
     "prefix": ";usec",
     "body": [
@@ -37,14 +36,25 @@
     ],
     "description": "Use Case Error snippet"
   },
-
-  "create-class-implements-interface": {
-    "prefix": ";cci",
+  "class-implements-interface": {
+    "prefix": ";ci",
     "body": [
       "",
       "export class $1 implements $2 {",
       "}"
     ],
     "description": "Use Case Error snippet"
+  },
+  "empty-class": {
+    "prefix": ";c",
+    "body": [
+      "",
+      "export class $1 {",
+      "\tconstructor($2) {}",
+      "\t",
+      "\t",
+      "}",
+    ],
+    "description": "Empty Class"
   }
 }
