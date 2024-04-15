@@ -1,9 +1,10 @@
-import { AnswersRepository } from "../repositories/answers-repository";
-import { Question } from "../../enterprise/entities/question";
-import { QuestionsRepository } from "../repositories/questions-repository";
-import { ResourceNotFoundError } from "@/core/errors/use-cases/resource-not-found-error";
-import { NotAllowedError } from "@/core/errors/use-cases/not-allowed-error";
 import { Either, left, right } from "@/core/either";
+import { NotAllowedError } from "@/core/errors/use-cases/not-allowed-error";
+import { ResourceNotFoundError } from "@/core/errors/use-cases/resource-not-found-error";
+import { Injectable } from "@nestjs/common";
+import { Question } from "../../enterprise/entities/question";
+import { AnswersRepository } from "../repositories/answers-repository";
+import { QuestionsRepository } from "../repositories/questions-repository";
 
 interface ChooseQuestionBestAnswerUseCaseRequest {
   authorId: string;
@@ -19,10 +20,11 @@ type ChooseQuestionBestAnswerUseCaseResponse = Either<
   }
 >;
 
+@Injectable()
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
-    private questionsRepository: QuestionsRepository,
-    private answersRepository: AnswersRepository,
+    private readonly questionsRepository: QuestionsRepository,
+    private readonly answersRepository: AnswersRepository,
   ) {}
 
   async execute({
@@ -46,6 +48,8 @@ export class ChooseQuestionBestAnswerUseCase {
     }
 
     question.bestAnswerId = answer.id;
+
+    await this.questionsRepository.save(question);
 
     return right({
       question,
