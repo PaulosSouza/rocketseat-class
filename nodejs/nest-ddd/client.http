@@ -34,6 +34,27 @@ Authorization: Bearer {{authToken}}
   "content": "Minha segunda resposta"
 }
 
+###
+
+# @name create_answer
+POST {{baseUrl}}/questions/ecf1a611-8978-4957-bfab-0e16595ce648/answers
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "content": "Minha primeira resposta"
+}
+
+###
+
+# @name edit_answer
+PUT {{baseUrl}}/answers/e8c24e28-be1d-4eae-9b47-bc7d57ea2606
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "content": "Minha primeira resposta editada"
+}
 
 ### 
 
