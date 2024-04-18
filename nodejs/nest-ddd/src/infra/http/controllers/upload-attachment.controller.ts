@@ -1,4 +1,6 @@
+import { UploadAndCreateAttachmentUseCase } from "@/domain/forum/application/use-cases/upload-and-create-attachment";
 import {
+  BadRequestException,
   Controller,
   FileTypeValidator,
   HttpCode,
@@ -12,7 +14,9 @@ import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller("/attachments")
 export class UploadAttachmentController {
-  //  constructor(private readonly getQuestionBySlug: GetQuestionBySlugUseCase) {}
+  constructor(
+    private readonly uploadAndCreateAttachmentUseCase: UploadAndCreateAttachmentUseCase,
+  ) {}
 
   @Post()
   @HttpCode(201)
@@ -28,6 +32,24 @@ export class UploadAttachmentController {
     )
     file: Express.Multer.File,
   ) {
-    console.log(file);
+    const result = await this.uploadAndCreateAttachmentUseCase.execute({
+      fileName: file.originalname,
+      fileType: file.mimetype,
+      body: file.buffer,
+    });
+
+    if (result.isLeft()) {
+      const error = result.value;
+
+      throw new BadRequestException(error.message);
+    }
+
+    const { attachment } = result.value;
+
+    const attachmentId = attachment.id.toString();
+
+    return {
+      attachmentId,
+    };
   }
 }
