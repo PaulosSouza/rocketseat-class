@@ -18,6 +18,43 @@ export class PrismaQuestionAttachmentsRepository implements QuestionAttachmentsR
     return questionAttachments.map(PrismaQuestionAttachmentMapper.toDomain);
   }
 
+  async createMany(attachments: QuestionAttachment[]): Promise<void> {
+    if (attachments.length === 0) {
+      return;
+    }
+
+    const attachmentIds = attachments.map((attachment) => attachment.id.toString());
+
+    const questionId = attachments[0].questionId.toString();
+
+    await this.prisma.attachment.updateMany({
+      where: {
+        id: {
+          in: attachmentIds,
+        },
+      },
+      data: {
+        questionId,
+      },
+    });
+  }
+
+  async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
+    if (attachments.length === 0) {
+      return;
+    }
+
+    const attachmentIds = attachments.map((attachment) => attachment.id.toString());
+
+    await this.prisma.attachment.deleteMany({
+      where: {
+        id: {
+          in: attachmentIds,
+        },
+      },
+    });
+  }
+
   async deleteManyByQuestionId(questionId: string): Promise<void> {
     await this.prisma.attachment.deleteMany({
       where: {
