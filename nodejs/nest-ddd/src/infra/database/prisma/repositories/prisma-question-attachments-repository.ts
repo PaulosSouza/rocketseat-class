@@ -23,7 +23,7 @@ export class PrismaQuestionAttachmentsRepository implements QuestionAttachmentsR
       return;
     }
 
-    const attachmentIds = attachments.map((attachment) => attachment.id.toString());
+    const attachmentIds = attachments.map((attachment) => attachment.attachmentId.toString());
 
     const questionId = attachments[0].questionId.toString();
 
@@ -44,7 +44,7 @@ export class PrismaQuestionAttachmentsRepository implements QuestionAttachmentsR
       return;
     }
 
-    const attachmentIds = attachments.map((attachment) => attachment.id.toString());
+    const attachmentIds = attachments.map((attachment) => attachment.attachmentId.toString());
 
     await this.prisma.attachment.deleteMany({
       where: {
