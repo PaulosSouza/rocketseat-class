@@ -33,7 +33,7 @@ export class FetchQuestionCommentsController {
       throw new BadRequestException();
     }
 
-    const comments = result.value.questionComments.map(CommentPresenter.toHTTP);
+    const comments = result.value.comments.map(CommentPresenter.toHTTP);
 
     return { comments };
   }
