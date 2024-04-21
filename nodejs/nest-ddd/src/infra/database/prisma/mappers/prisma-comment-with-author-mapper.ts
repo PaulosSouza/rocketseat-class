@@ -2,14 +2,10 @@ import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { CommentWithAuthor } from "@/domain/forum/enterprise/entities/value-objects/comment-with-author";
 import { Comment as PrismaComment, User as PrismaUser } from "@prisma/client";
 
-type PrismaComemntWithAuthor = PrismaComment & { author: PrismaUser };
+type PrismaCommentWithAuthor = PrismaComment & { author: PrismaUser };
 
 export class PrismaCommentWithAuthorMapper {
-  static toDomain(raw: PrismaComemntWithAuthor): CommentWithAuthor {
-    if (!raw.questionId) {
-      throw new Error("Invalid comment type.");
-    }
-
+  static toDomain(raw: PrismaCommentWithAuthor): CommentWithAuthor {
     return CommentWithAuthor.create({
       content: raw.content,
       authorId: new UniqueEntityID(raw.authorId),
